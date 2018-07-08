@@ -1,0 +1,16 @@
+User.findOneAndUpdate(..) - ошибка во 2м параметре. неуказано $set 
+User.findOneAndUpdate(..) - возможно ошибка в 3м параметре. Среди опций в нету таких, как описаны.
+Shop.findById - нету такой функции
+Shop.findById(shopId).exec - не нуждается в запуске. 
+email: invitationBody.email - емаил почемуто берем не из invitationBody.body.email
+
+status - 201 - но внутри мы не добавляем, а берем из коллекции и обновляем. Берем данные до обновления.
+
+if (shop.invitations.indexOf(invitationResponse.body.invitationId)) - не правильное использование indexOf - -1 = true и любая позиция кроде 0й будет true
+shop.users.push(createdUser); - не уверен, что так правильно добавлять.
+shop.save(); - надо  передать объект, а не просто вызвать https://docs.mongodb.com/manual/reference/method/db.collection.save/
+.end(function(err, invitationResponse) { - внутри нету проверки для err
+
+Так же по логике мы сначала должны были провети приглашение, для юзера чтоб существовало и если оно есть только тогда добавлять в shop.users
+
+для улучшения читаймости кода можно вынести первый колбэк из .end 
